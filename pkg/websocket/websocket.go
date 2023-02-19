@@ -164,8 +164,7 @@ func broadcaster(ws *Websocket) {
 	connections := make([]*websocket.Conn, 0)
 	buff := make([]byte, 0)
 
-	loop := true
-	for loop {
+	for {
 		select {
 		// Add a connection to the list
 		case conn := <-ws.add:
@@ -210,7 +209,7 @@ func broadcaster(ws *Websocket) {
 			}
 
 			ws.server.Shutdown(context.Background())
-			loop = false
+			return
 		}
 	}
 }
