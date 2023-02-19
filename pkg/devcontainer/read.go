@@ -2,23 +2,17 @@ package devcontainer
 
 import (
 	"encoding/json"
+	"os/exec"
 
-	"github.com/corp4/container4/pkg/execute"
 	log "github.com/sirupsen/logrus"
 )
 
 func (dc *Devcontainer) GetConfig() (map[string]interface{}, error) {
 	// Prepare arguments for the devcontainer command
-	args := []string{"--workspace-folder", dc.WorkspaceFolder}
-
-	devcontainerCmd := append([]string{"read-configuration"}, args...)
-	cmd, stdout, stderr, err := execute.AsyncExecute(append([]string{"devcontainer"}, devcontainerCmd...))
-	if err != nil {
-		return nil, err
-	}
+	args := []string{"read-configuration", "--workspace-folder", dc.WorkspaceFolder}
 
 	// Read the output
-	out, err := execute.SyncReadCommandResult(cmd, stdout, stderr)
+	out, err := exec.Command("devcontainer", args...).Output()
 	if err != nil {
 		return nil, err
 	}

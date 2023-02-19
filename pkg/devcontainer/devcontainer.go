@@ -45,7 +45,7 @@ func (dc *Devcontainer) RunCommand(cmdName string, logName string, args []string
 	devcontainerCmd = append(devcontainerCmd, args...)
 
 	dc.Infoln("=== Devcontainer " + cmdName + ": " + logName + " Command ===")
-	cmd, stdout, stderr, err := execute.AsyncExecute(append([]string{"devcontainer"}, devcontainerCmd...))
+	cmd, stdout, stderr, err := execute.AsyncExecute("devcontainer", devcontainerCmd...)
 	if err != nil {
 		return err
 	}

@@ -7,9 +7,9 @@ import (
 	log "github.com/sirupsen/logrus"
 )
 
-func AsyncExecute(args []string) (*exec.Cmd, io.ReadCloser, io.ReadCloser, error) {
+func AsyncExecute(cmdName string, args ...string) (*exec.Cmd, io.ReadCloser, io.ReadCloser, error) {
 	// Create the command
-	cmd := exec.Command(args[0], args[1:]...)
+	cmd := exec.Command(cmdName, args...)
 
 	// Get the stdout and stderr
 	stdout, err := cmd.StdoutPipe()
