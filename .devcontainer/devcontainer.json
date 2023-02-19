@@ -1,4 +1,8 @@
 {
   "name": "Container4",
-  "image": "mcr.microsoft.com/devcontainers/go:0-1-bullseye"
+  "image": "mcr.microsoft.com/devcontainers/go:0-1-bullseye",
+
+  "features": {
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {}
+  }
 }
